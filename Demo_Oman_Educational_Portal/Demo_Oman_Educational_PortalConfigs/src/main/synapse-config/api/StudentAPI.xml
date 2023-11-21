@@ -12,18 +12,39 @@
                     </pool>
                 </connection>
                 <statement>
-                    <sql><![CDATA[select student_fname from students where student_id=?]]></sql>
+                    <sql><![CDATA[select student_id,student_fname,student_mname,student_lname,student_gender,student_address,student_phone,student_email from students where student_id=?]]></sql>
                     <parameter expression="$url:id" type="NUMERIC"/>
-                    <result column="student_fname" name="student_name"/>
+                    <result column="student_mname" name="student_mname"/>
+                    <result column="student_gender" name="student_gender"/>
+                    <result column="student_lname" name="student_lname"/>
+                    <result column="student_phone" name="student_phone"/>
+                    <result column="student_id" name="student_id"/>
+                    <result column="student_address" name="student_address"/>
+                    <result column="student_email" name="student_email"/>
+                    <result column="student_fname" name="student_fname"/>
                 </statement>
             </dblookup>
             <log level="full"/>
             <payloadFactory media-type="json">
                 <format>{&#xd;
-	"Student_name" : "$1"&#xd;
+	"student_id": $1&#xd;
+    "student_fname": "$2",&#xd;
+    "student_mname": "$3",&#xd;
+    "student_lname": "$4",&#xd;
+    "student_gender": "$5",&#xd;
+    "student_address": "$6",&#xd;
+    "student_phone": "$7",&#xd;
+    "student_email": "$8"&#xd;
 }</format>
                 <args>
-                    <arg evaluator="xml" expression="get-property('student_name')"/>
+                    <arg evaluator="xml" expression="get-property('student_id')"/>
+                    <arg evaluator="xml" expression="get-property('student_fname')"/>
+                    <arg evaluator="xml" expression="get-property('student_mname')"/>
+                    <arg evaluator="xml" expression="get-property('student_lname')"/>
+                    <arg evaluator="xml" expression="get-property('student_gender')"/>
+                    <arg evaluator="xml" expression="get-property('student_address')"/>
+                    <arg evaluator="xml" expression="get-property('student_phone')"/>
+                    <arg evaluator="xml" expression="get-property('student_email')"/>
                 </args>
             </payloadFactory>
             <respond/>
@@ -62,6 +83,12 @@
                     <parameter expression="get-property('student_email')" type="VARCHAR"/>
                 </statement>
             </dbreport>
+            <payloadFactory media-type="json">
+                <format>{&#xd;
+	"result_description": "student inserted successfully to database"&#xd;
+}</format>
+                <args/>
+            </payloadFactory>
             <respond/>
         </inSequence>
         <outSequence/>
