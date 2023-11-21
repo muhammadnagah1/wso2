@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/student" name="StudentAPI" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET" uri-template="/get">
+        <inSequence>
+            <dblookup>
+                <connection>
+                    <pool>
+                        <driver>org.postgresql.Driver</driver>
+                        <url>jdbc:postgresql://192.168.10.217:32432/db0</url>
+                        <user>mendix</user>
+                        <password>mendix</password>
+                    </pool>
+                </connection>
+                <statement>
+                    <sql><![CDATA[select student_fname from students where student_id=?]]></sql>
+                    <parameter expression="$url:id" type="NUMERIC"/>
+                    <result column="student_fname" name="student_name"/>
+                </statement>
+            </dblookup>
+            <log level="full"/>
+            <payloadFactory media-type="json">
+                <format>{&#xd;
+	"Student_name" : "$1"&#xd;
+}</format>
+                <args>
+                    <arg evaluator="xml" expression="get-property('student_name')"/>
+                </args>
+            </payloadFactory>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>
