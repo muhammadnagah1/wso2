@@ -31,4 +31,40 @@
         <outSequence/>
         <faultSequence/>
     </resource>
+    <resource methods="POST" uri-template="/add">
+        <inSequence>
+            <propertyGroup>
+                <property expression="json-eval($.student_fname)" name="student_f_name" scope="default" type="STRING"/>
+                <property expression="json-eval($.student_mname)" name="student_m_name" scope="default" type="STRING"/>
+                <property expression="json-eval($.student_lname)" name="student_l_name" scope="default" type="STRING"/>
+                <property expression="json-eval($.student_gender)" name="student_gender" scope="default" type="STRING"/>
+                <property expression="json-eval($.student_address)" name="student_address" scope="default" type="STRING"/>
+                <property expression="json-eval($.student_phone)" name="student_phone" scope="default" type="STRING"/>
+                <property expression="json-eval($.student_email)" name="student_email" scope="default" type="STRING"/>
+            </propertyGroup>
+            <dbreport>
+                <connection>
+                    <pool>
+                        <driver>org.postgresql.Driver</driver>
+                        <url>jdbc:postgresql://192.168.10.217:32432/db0</url>
+                        <user>mendix</user>
+                        <password>mendix</password>
+                    </pool>
+                </connection>
+                <statement>
+                    <sql><![CDATA[insert into students (student_id,student_fname,student_mname,student_lname,student_gender,student_address,student_phone,student_email) values (nextval('student_id_seq'),?,?,?,?,?,?,?)]]></sql>
+                    <parameter expression="get-property('student_f_name')" type="VARCHAR"/>
+                    <parameter expression="get-property('student_m_name')" type="VARCHAR"/>
+                    <parameter expression="get-property('student_l_name')" type="VARCHAR"/>
+                    <parameter expression="get-property('student_gender')" type="VARCHAR"/>
+                    <parameter expression="get-property('student_address')" type="VARCHAR"/>
+                    <parameter expression="get-property('student_phone')" type="VARCHAR"/>
+                    <parameter expression="get-property('student_email')" type="VARCHAR"/>
+                </statement>
+            </dbreport>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
 </api>
