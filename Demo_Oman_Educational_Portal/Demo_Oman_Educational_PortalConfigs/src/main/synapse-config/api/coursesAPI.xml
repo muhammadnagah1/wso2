@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/course" name="coursesAPI" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET" uri-template="/getCourse">
+        <inSequence>
+            <dblookup>
+                <connection>
+                    <pool>
+                        <driver>org.postgresql.Driver</driver>
+                        <url>jdbc:postgresql://192.168.10.217:32432/db0</url>
+                        <user>mendix</user>
+                        <password>mendix</password>
+                    </pool>
+                </connection>
+                <statement>
+                    <sql><![CDATA[select course_id,course_name,course_prerequisites from courses where course_id=?]]></sql>
+                    <parameter expression="$url:id" type="NUMERIC"/>
+                    <result column="course_id" name="course_id"/>
+                    <result column="course_prerequisites" name="course_prerequisites"/>
+                    <result column="course_name" name="course_name"/>
+                </statement>
+            </dblookup>
+            <log level="full"/>
+            <payloadFactory media-type="json">
+                <format>{&#xd;
+	"course_id": $1,&#xd;
+	"course_name": "$2",&#xd;
+	"course_prerequisites": "$3"&#xd;
+}</format>
+                <args>
+                    <arg evaluator="xml" expression="get-property('course_id')"/>
+                    <arg evaluator="xml" expression="get-property('course_name')"/>
+                    <arg evaluator="xml" expression="get-property('course_prerequisites')"/>
+                </args>
+            </payloadFactory>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+    <resource methods="POST" uri-template="/addCourse">
+        <inSequence>
+            <log level="full"/>
+            <propertyGroup>
+                <property expression="json-eval($.course_name)" name="course_name" scope="default" type="STRING"/>
+                <property expression="json-eval($.course_prerequisites)" name="course_prerequisites" scope="default" type="STRING"/>
+            </propertyGroup>
+            <dbreport>
+                <connection>
+                    <pool>
+                        <driver>org.postgresql.Driver</driver>
+                        <url>jdbc:postgresql://192.168.10.217:32432/db0</url>
+                        <user>mendix</user>
+                        <password>mendix</password>
+                    </pool>
+                </connection>
+                <statement>
+                    <sql><![CDATA[insert into courses (course_id,course_name,course_prerequisites) values (nextval('course_id_seq'),?,?);]]></sql>
+                    <parameter expression="get-property('course_name')" type="VARCHAR"/>
+                    <parameter expression="get-property('course_prerequisites')" type="VARCHAR"/>
+                </statement>
+            </dbreport>
+            <payloadFactory media-type="json">
+                <format>{&#xd;
+	"result_description": "course inserted successfully to database"&#xd;
+}</format>
+                <args/>
+            </payloadFactory>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

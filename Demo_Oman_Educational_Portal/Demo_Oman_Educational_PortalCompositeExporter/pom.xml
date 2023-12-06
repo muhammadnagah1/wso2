@@ -14,22 +14,35 @@
   <name>Demo_Oman_Educational_PortalCompositeExporter</name>
   <description>Demo_Oman_Educational_PortalCompositeExporter</description>
   <properties>
-    <Oman.Education.metadata_._StudentAPI_swagger>capp/EnterpriseServiceBus</Oman.Education.metadata_._StudentAPI_swagger>
     <com.example.metadata_._getCompanyDetails_metadata>capp/EnterpriseServiceBus</com.example.metadata_._getCompanyDetails_metadata>
-    <Oman.Education.api_._StudentAPI>capp/EnterpriseServiceBus</Oman.Education.api_._StudentAPI>
     <com.example.api_._callCompanyDetails>capp/EnterpriseServiceBus</com.example.api_._callCompanyDetails>
-    <com.example.endpoint_._getCompanyDetails-Endpoint>capp/EnterpriseServiceBus</com.example.endpoint_._getCompanyDetails-Endpoint>
-    <com.example.metadata_._callCompanyDetails_metadata>capp/EnterpriseServiceBus</com.example.metadata_._callCompanyDetails_metadata>
-    <artifact.types>jaggery/app=zip,synapse/priority-executor=xml,synapse/inbound-endpoint=xml,service/rule=aar,synapse/message-store=xml,event/stream=json,service/meta=xml,datasource/datasource=xml,synapse/proxy-service=xml,bpel/workflow=zip,synapse/sequence=xml,synapse/endpointTemplate=xml,carbon/application=car,wso2/gadget=dar,synapse/api=xml,synapse/event-source=xml,synapse/message-processors=xml,event/receiver=xml,lib/dataservice/validator=jar,synapse/template=xml,synapse/endpoint=xml,lib/carbon/ui=jar,lib/synapse/mediator=jar,synapse/metadata=yaml,event/publisher=xml,synapse/local-entry=xml,synapse/task=xml,webapp/jaxws=war,registry/resource=zip,synapse/configuration=xml,service/axis2=aar,synapse/lib=zip,synapse/sequenceTemplate=xml,event/execution-plan=siddhiql,service/dataservice=dbs,web/application=war,lib/library/bundle=jar</artifact.types>
-    <Oman.Education.metadata_._StudentAPI_metadata>capp/EnterpriseServiceBus</Oman.Education.metadata_._StudentAPI_metadata>
+    <Oman.Education.api_._StudentAPI>capp/EnterpriseServiceBus</Oman.Education.api_._StudentAPI>
     <com.example.api_._getCompanyDetails>capp/EnterpriseServiceBus</com.example.api_._getCompanyDetails>
+    <Oman.Education.metadata_._StudentAPI_metadata>capp/EnterpriseServiceBus</Oman.Education.metadata_._StudentAPI_metadata>
+    <Oman.Education.metadata_._coursesAPI_swagger>capp/EnterpriseServiceBus</Oman.Education.metadata_._coursesAPI_swagger>
+    <Oman.Education.metadata_._testAPIReflection_swagger>capp/EnterpriseServiceBus</Oman.Education.metadata_._testAPIReflection_swagger>
+    <Oman.Education.api_._teacherAPI>capp/EnterpriseServiceBus</Oman.Education.api_._teacherAPI>
     <com.example.metadata_._callCompanyDetails_swagger>capp/EnterpriseServiceBus</com.example.metadata_._callCompanyDetails_swagger>
+    
+    <Oman.Education.metadata_._coursesAPI_metadata>capp/EnterpriseServiceBus</Oman.Education.metadata_._coursesAPI_metadata>
+    <com.example.metadata_._callCompanyDetails_metadata>capp/EnterpriseServiceBus</com.example.metadata_._callCompanyDetails_metadata>
+    <Oman.Education.metadata_._testAPIReflection_metadata>capp/EnterpriseServiceBus</Oman.Education.metadata_._testAPIReflection_metadata>
+    <Oman.Education.metadata_._gradeAPI_metadata>capp/EnterpriseServiceBus</Oman.Education.metadata_._gradeAPI_metadata>
     <com.example.metadata_._getCompanyDetails_swagger>capp/EnterpriseServiceBus</com.example.metadata_._getCompanyDetails_swagger>
+    <Oman.Education.metadata_._StudentAPI_swagger>capp/EnterpriseServiceBus</Oman.Education.metadata_._StudentAPI_swagger>
+    <Oman.Education.api_._coursesAPI>capp/EnterpriseServiceBus</Oman.Education.api_._coursesAPI>
+    <Oman.Education.metadata_._teacherAPI_metadata>capp/EnterpriseServiceBus</Oman.Education.metadata_._teacherAPI_metadata>
+    <Oman.Education.metadata_._testAPIreflection_metadata>capp/EnterpriseServiceBus</Oman.Education.metadata_._testAPIreflection_metadata>
+    <com.example.endpoint_._getCompanyDetails-Endpoint>capp/EnterpriseServiceBus</com.example.endpoint_._getCompanyDetails-Endpoint>
+    <artifact.types>jaggery/app=zip,synapse/priority-executor=xml,synapse/inbound-endpoint=xml,service/rule=aar,synapse/message-store=xml,event/stream=json,service/meta=xml,datasource/datasource=xml,synapse/proxy-service=xml,bpel/workflow=zip,synapse/sequence=xml,synapse/endpointTemplate=xml,carbon/application=car,wso2/gadget=dar,synapse/api=xml,synapse/event-source=xml,synapse/message-processors=xml,event/receiver=xml,lib/dataservice/validator=jar,synapse/template=xml,synapse/endpoint=xml,lib/carbon/ui=jar,lib/synapse/mediator=jar,synapse/metadata=yaml,event/publisher=xml,synapse/local-entry=xml,synapse/task=xml,webapp/jaxws=war,registry/resource=zip,synapse/configuration=xml,service/axis2=aar,synapse/lib=zip,synapse/sequenceTemplate=xml,event/execution-plan=siddhiql,service/dataservice=dbs,web/application=war,lib/library/bundle=jar</artifact.types>
+    <Oman.Education.metadata_._testAPIreflection_swagger>capp/EnterpriseServiceBus</Oman.Education.metadata_._testAPIreflection_swagger>
+    <Oman.Education.metadata_._gradeAPI_swagger>capp/EnterpriseServiceBus</Oman.Education.metadata_._gradeAPI_swagger>
+    <Oman.Education.metadata_._teacherAPI_swagger>capp/EnterpriseServiceBus</Oman.Education.metadata_._teacherAPI_swagger>
   </properties>
   <dependencies>
-    <dependency>
+        <dependency>
       <groupId>Oman.Education.metadata</groupId>
-      <artifactId>StudentAPI_swagger</artifactId>
+      <artifactId>coursesAPI_metadata</artifactId>
       <version>1.0.0</version>
       <type>yaml</type>
     </dependency>
@@ -40,20 +53,14 @@
       <type>yaml</type>
     </dependency>
     <dependency>
-      <groupId>Oman.Education.api</groupId>
-      <artifactId>StudentAPI</artifactId>
-      <version>1.0.0</version>
-      <type>xml</type>
-    </dependency>
-    <dependency>
       <groupId>com.example.api</groupId>
       <artifactId>callCompanyDetails</artifactId>
       <version>1.0.0</version>
       <type>xml</type>
     </dependency>
     <dependency>
-      <groupId>com.example.endpoint</groupId>
-      <artifactId>getCompanyDetails-Endpoint</artifactId>
+      <groupId>Oman.Education.api</groupId>
+      <artifactId>StudentAPI</artifactId>
       <version>1.0.0</version>
       <type>xml</type>
     </dependency>
@@ -65,7 +72,13 @@
     </dependency>
     <dependency>
       <groupId>Oman.Education.metadata</groupId>
-      <artifactId>StudentAPI_metadata</artifactId>
+      <artifactId>testAPIReflection_metadata</artifactId>
+      <version>1.0.0</version>
+      <type>yaml</type>
+    </dependency>
+    <dependency>
+      <groupId>Oman.Education.metadata</groupId>
+      <artifactId>gradeAPI_metadata</artifactId>
       <version>1.0.0</version>
       <type>yaml</type>
     </dependency>
@@ -76,14 +89,86 @@
       <type>xml</type>
     </dependency>
     <dependency>
-      <groupId>com.example.metadata</groupId>
-      <artifactId>callCompanyDetails_swagger</artifactId>
+      <groupId>Oman.Education.metadata</groupId>
+      <artifactId>StudentAPI_metadata</artifactId>
       <version>1.0.0</version>
       <type>yaml</type>
     </dependency>
     <dependency>
       <groupId>com.example.metadata</groupId>
       <artifactId>getCompanyDetails_swagger</artifactId>
+      <version>1.0.0</version>
+      <type>yaml</type>
+    </dependency>
+    <dependency>
+      <groupId>Oman.Education.metadata</groupId>
+      <artifactId>StudentAPI_swagger</artifactId>
+      <version>1.0.0</version>
+      <type>yaml</type>
+    </dependency>
+    <dependency>
+      <groupId>Oman.Education.api</groupId>
+      <artifactId>coursesAPI</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>Oman.Education.metadata</groupId>
+      <artifactId>teacherAPI_metadata</artifactId>
+      <version>1.0.0</version>
+      <type>yaml</type>
+    </dependency>
+    <dependency>
+      <groupId>Oman.Education.metadata</groupId>
+      <artifactId>coursesAPI_swagger</artifactId>
+      <version>1.0.0</version>
+      <type>yaml</type>
+    </dependency>
+    <dependency>
+      <groupId>Oman.Education.metadata</groupId>
+      <artifactId>testAPIreflection_metadata</artifactId>
+      <version>1.0.0</version>
+      <type>yaml</type>
+    </dependency>
+    <dependency>
+      <groupId>com.example.endpoint</groupId>
+      <artifactId>getCompanyDetails-Endpoint</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>Oman.Education.metadata</groupId>
+      <artifactId>testAPIReflection_swagger</artifactId>
+      <version>1.0.0</version>
+      <type>yaml</type>
+    </dependency>
+    <dependency>
+      <groupId>Oman.Education.api</groupId>
+      <artifactId>teacherAPI</artifactId>
+      <version>1.0.0</version>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>com.example.metadata</groupId>
+      <artifactId>callCompanyDetails_swagger</artifactId>
+      <version>1.0.0</version>
+      <type>yaml</type>
+    </dependency>
+    <dependency>
+      <groupId>Oman.Education.metadata</groupId>
+      <artifactId>testAPIreflection_swagger</artifactId>
+      <version>1.0.0</version>
+      <type>yaml</type>
+    </dependency>
+    <dependency>
+      <groupId>Oman.Education.metadata</groupId>
+      <artifactId>gradeAPI_swagger</artifactId>
+      <version>1.0.0</version>
+      <type>yaml</type>
+    </dependency>
+    <dependency>
+      <groupId>Oman.Education.metadata</groupId>
+      <artifactId>teacherAPI_swagger</artifactId>
       <version>1.0.0</version>
       <type>yaml</type>
     </dependency>

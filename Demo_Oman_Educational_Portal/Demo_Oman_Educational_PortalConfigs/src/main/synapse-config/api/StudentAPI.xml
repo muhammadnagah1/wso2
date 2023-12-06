@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <api context="/student" name="StudentAPI" xmlns="http://ws.apache.org/ns/synapse">
-    <resource methods="GET" uri-template="/get">
+    <resource methods="GET" uri-template="/getStudent">
         <inSequence>
             <dblookup>
                 <connection>
@@ -47,13 +47,15 @@
                     <arg evaluator="xml" expression="get-property('student_email')"/>
                 </args>
             </payloadFactory>
+            <log level="full"/>
             <respond/>
         </inSequence>
         <outSequence/>
         <faultSequence/>
     </resource>
-    <resource methods="POST" uri-template="/add">
+    <resource methods="POST" uri-template="/addStudent">
         <inSequence>
+            <log level="full"/>
             <propertyGroup>
                 <property expression="json-eval($.student_fname)" name="student_f_name" scope="default" type="STRING"/>
                 <property expression="json-eval($.student_mname)" name="student_m_name" scope="default" type="STRING"/>

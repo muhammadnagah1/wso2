@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/teacher" name="teacherAPI" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET" uri-template="/getTeacher">
+        <inSequence>
+            <dblookup>
+                <connection>
+                    <pool>
+                        <driver>org.postgresql.Driver</driver>
+                        <url>jdbc:postgresql://192.168.10.217:32432/db0</url>
+                        <user>mendix</user>
+                        <password>mendix</password>
+                    </pool>
+                </connection>
+                <statement>
+                    <sql><![CDATA[select teacher_id,teacher_fname,teacher_mname,teacher_lname,teacher_gender,teacher_address,teacher_phone,teacher_email from teachers where teacher_id=?]]></sql>
+                    <parameter expression="$url:id" type="NUMERIC"/>
+                    <result column="teacher_email" name="teacher_email"/>
+                    <result column="teacher_phone" name="teacher_phone"/>
+                    <result column="teacher_lname" name="teacher_lname"/>
+                    <result column="teacher_id" name="teacher_id"/>
+                    <result column="teacher_mname" name="teacher_mname"/>
+                    <result column="teacher_gender" name="teacher_gender"/>
+                    <result column="teacher_fname" name="teacher_fname"/>
+                    <result column="teacher_address" name="teacher_address"/>
+                </statement>
+            </dblookup>
+            <log level="full"/>
+            <payloadFactory media-type="json">
+                <format>{&#xd;
+	"teacher_id": $1&#xd;
+	"teacher_fname": "$2",&#xd;
+	"teacher_mname": "$3",&#xd;
+	"teacher_lname": "$4",&#xd;
+	"teacher_gender": "$5",&#xd;
+	"teacher_address": "$6",&#xd;
+	"teacher_phone": "$7",&#xd;
+	"teacher_email": "$8"&#xd;
+}</format>
+                <args>
+                    <arg evaluator="xml" expression="get-property('teacher_id')"/>
+                    <arg evaluator="xml" expression="get-property('teacher_fname')"/>
+                    <arg evaluator="xml" expression="get-property('teacher_mname')"/>
+                    <arg evaluator="xml" expression="get-property('teacher_lname')"/>
+                    <arg evaluator="xml" expression="get-property('teacher_gender')"/>
+                    <arg evaluator="xml" expression="get-property('teacher_address')"/>
+                    <arg evaluator="xml" expression="get-property('teacher_phone')"/>
+                    <arg evaluator="xml" expression="get-property('teacher_email')"/>
+                </args>
+            </payloadFactory>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+    <resource methods="POST" uri-template="/addTeacher">
+        <inSequence>
+            <log level="full"/>
+            <propertyGroup>
+                <property expression="json-eval($.teacher_fname)" name="teacher_fname" scope="default" type="STRING"/>
+                <property expression="json-eval($.teacher_mname)" name="teacher_mname" scope="default" type="STRING"/>
+                <property expression="json-eval($.teacher_lname)" name="teacher_lname" scope="default" type="STRING"/>
+                <property expression="json-eval($.teacher_gender)" name="teacher_gender" scope="default" type="STRING"/>
+                <property expression="json-eval($.teacher_address)" name="teacher_address" scope="default" type="STRING"/>
+                <property expression="json-eval($.teacher_phone)" name="teacher_phone" scope="default" type="STRING"/>
+                <property expression="json-eval($.teacher_email)" name="teacher_email" scope="default" type="STRING"/>
+            </propertyGroup>
+            <dbreport>
+                <connection>
+                    <pool>
+                        <driver>org.postgresql.Driver</driver>
+                        <url>jdbc:postgresql://192.168.10.217:32432/db0</url>
+                        <user>mendix</user>
+                        <password>mendix</password>
+                    </pool>
+                </connection>
+                <statement>
+                    <sql><![CDATA[insert into teachers (teacher_id,teacher_fname,teacher_mname,teacher_lname,teacher_gender,teacher_address,teacher_phone,teacher_email) values (nextval('teacher_id_seq'),?,?,?,?,?,?,?);]]></sql>
+                    <parameter expression="get-property('teacher_fname')" type="VARCHAR"/>
+                    <parameter expression="get-property('teacher_mname')" type="VARCHAR"/>
+                    <parameter expression="get-property('teacher_lname')" type="VARCHAR"/>
+                    <parameter expression="get-property('teacher_gender')" type="VARCHAR"/>
+                    <parameter expression="get-property('teacher_address')" type="VARCHAR"/>
+                    <parameter expression="get-property('teacher_phone')" type="VARCHAR"/>
+                    <parameter expression="get-property('teacher_email')" type="VARCHAR"/>
+                </statement>
+            </dbreport>
+            <payloadFactory media-type="json">
+                <format>{&#xd;
+	"result_description": "teacher inserted successfully to database"&#xd;
+}</format>
+                <args/>
+            </payloadFactory>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

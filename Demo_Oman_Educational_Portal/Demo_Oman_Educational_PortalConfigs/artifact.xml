@@ -8,4 +8,22 @@
     <artifact name="StudentAPI_metadata" groupId="Oman.Education.metadata" version="1.0.0" type="synapse/metadata" serverRole="EnterpriseServiceBus">
         <file>src/main/resources/metadata/StudentAPI_metadata.yaml</file>
     </artifact>
+    <artifact name="teacherAPI" groupId="Oman.Education.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/teacherAPI.xml</file>
+    </artifact>
+    <artifact name="teacherAPI_swagger" groupId="Oman.Education.metadata" version="1.0.0" type="synapse/metadata" serverRole="EnterpriseServiceBus">
+        <file>src/main/resources/metadata/teacherAPI_swagger.yaml</file>
+    </artifact>
+    <artifact name="teacherAPI_metadata" groupId="Oman.Education.metadata" version="1.0.0" type="synapse/metadata" serverRole="EnterpriseServiceBus">
+        <file>src/main/resources/metadata/teacherAPI_metadata.yaml</file>
+    </artifact>
+    <artifact name="coursesAPI" groupId="Oman.Education.api" version="1.0.0" type="synapse/api" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/api/coursesAPI.xml</file>
+    </artifact>
+    <artifact name="coursesAPI_swagger" groupId="Oman.Education.metadata" version="1.0.0" type="synapse/metadata" serverRole="EnterpriseServiceBus">
+        <file>src/main/resources/metadata/coursesAPI_swagger.yaml</file>
+    </artifact>
+    <artifact name="coursesAPI_metadata" groupId="Oman.Education.metadata" version="1.0.0" type="synapse/metadata" serverRole="EnterpriseServiceBus">
+        <file>src/main/resources/metadata/coursesAPI_metadata.yaml</file>
+    </artifact>
 </artifacts>
